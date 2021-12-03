@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Bootstrap Example</title>
+        <title>Index</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -42,12 +42,12 @@
                             <td>{{ item.date }}</td>
                             <td>{{ item.time }}</td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-danger">
-                                    Delete
-                                </button>
-                                <button type="button" class="btn btn-primary">
-                                    Edit
-                                </button>
+                                <a href="{% url 'weather:delete' item.id %}">
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </a>
+                                <a href="{% url 'weather:edit' item.id %}">
+                                    <button type="button" class="btn btn-primary">Edit</button>
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}
