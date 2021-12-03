@@ -19,3 +19,17 @@ class Index(View):
 
     def get(self, *args, **kwargs):
         return self.renderizar
+
+class Edit(View):
+    template_name = 'weather/edit.html'
+
+    def setup(self, *args, **kwargs):
+        super().setup(*args, **kwargs)
+        
+        self.context = {
+        }
+
+        self.renderizar = render(self.request, self.template_name, self.context)
+
+    def get(self, *args, **kwargs):
+        return self.renderizar

@@ -1,9 +1,69 @@
-{% for item in data %}
-    <br />
-    <p>ID: {{ item.id }}</p>
-    <p>Temperature: {{ item.temperature }}</p>
-    <p>Humidity: {{ item.humidity }}</p>
-    <p>Luminosity: {{ item.luminosity }}</p>
-    <p>Date: {{ item.date }}</p>
-    <p>Time: {{ item.time }}</p>
-{% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="jumbotron text-center">
+            <h1>Weather</h1>
+            <p>See the data obtained from the REST API</p> 
+        </div>
+        
+        <div class="container">
+            <h2>Filterable Table</h2>
+            <p>You can filter by entering any data from any field!</p>
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Temperature</th>
+                        <th>Humidity</th>
+                        <th>Luminosity</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    {% for item in data %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.temperature }}</td>
+                            <td>{{ item.humidity }}</td>
+                            <td>{{ item.luminosity }}</td>
+                            <td>{{ item.date }}</td>
+                            <td>{{ item.time }}</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-danger">
+                                    Delete
+                                </button>
+                                <button type="button" class="btn btn-primary">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
