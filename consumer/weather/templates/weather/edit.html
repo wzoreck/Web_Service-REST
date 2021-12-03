@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Index</title>
+        <title>Edit</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -16,7 +16,8 @@
         </div>
         
         <div class="container">
-            <form action="/action_page.php">
+            <form method="POST">
+                {% csrf_token %}
                 <div class="row">
                     <div class="form-group col-md-2">
                         <label>Temperature:</label>
